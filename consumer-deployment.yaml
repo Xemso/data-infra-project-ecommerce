@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boutique-consumer-deployment
+  labels:
+    app: boutique-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: boutique-consumer
+  template:
+    metadata:
+      labels:
+        app: boutique-consumer
+    spec:
+      containers:
+      - name: boutique-consumer
+        # We use the specific image we built for the consumer
+        image: boutique-consumer
+        # This is crucial to use local images
+        imagePullPolicy: Never

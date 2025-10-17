@@ -1,0 +1,10 @@
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Data files
+data/sales_report.txt

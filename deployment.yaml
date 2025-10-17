@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boutique-deployment
+  labels:
+    app: boutique
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: boutique
+  template:
+    metadata:
+      labels:
+        app: boutique
+    spec:
+      containers:
+      - name: boutique-app
+        image: boutique-app
+        imagePullPolicy: Never 
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: boutique-service
+spec:
+  type: NodePort 
+  selector:
+    app: boutique
+  ports:
+    - port: 80
+      targetPort: 5000
+      nodePort: 30001
